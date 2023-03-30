@@ -1,20 +1,53 @@
 export interface Ingredients {
-    id: string,
     name: string,
-    quantity: number
+    price: number,
 }
 
 export interface Instructions {
-    id: string,
     name: string,
     description: string,
-    ingredients: Array<Ingredients>
+    ingredients: Array<Ingredients>,
     time: number
 }
 
 export interface Recipe {
-    id: string,
     name: string,
-    ingredients: Array<Ingredients>,
+    ingredients: Array<readonly [Ingredients, number]>,
     instructions: Array<Instructions>
+}
+
+export class newIngredient {
+    name: string;
+    price: number;
+
+    constructor(name: string, price: number) {
+        this.name = name;
+        this.price = price;
+    }
+}
+
+export class newInstruction {
+    name: string;
+    description: string;
+    ingredients: Array<Ingredients>;
+    time: number;
+
+    constructor(name: string, description: string, ingredients: Array<Ingredients>, time: number) {
+        this.name = name;
+        this.description = description;
+        this.ingredients = ingredients;
+        this.time = time;
+    }
+} 
+
+export class newRecipe {
+    name: string;
+    ingredients: Array<Ingredients>;
+    instructions: Array<Instructions>;
+
+    constructor(name: string, ingredients: Array<Ingredients>, instructions: Array<Instructions>) {
+        this.name = name;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
+    }
 }
