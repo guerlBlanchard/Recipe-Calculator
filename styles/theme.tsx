@@ -8,6 +8,7 @@ type HEX = `#${string}`;
 type Color = RGB | RGBA | HEX;
 
 interface theme {
+    name: string,
     font: Color,
     background: Color,
     button: Color
@@ -16,8 +17,7 @@ interface theme {
 
 
 export default class Theme {
-    
-
+    ThemeList: Array<theme>
 
     constructor() {
         try {
@@ -29,6 +29,7 @@ export default class Theme {
         } catch(e) {
             alert(e);
         }
+        this.ThemeList = []
     }
 
     async getTheme(): Promise<theme> {
@@ -36,10 +37,14 @@ export default class Theme {
 
         switch (colorPalette) {
             case 'light':
-                return ({} as theme)
+                return (this.ThemeList[0])
         
             default:
-                return ({} as theme)
+                return (this.ThemeList[1])
         }
+    }
+
+    setTheme(theme:string) {
+        return (AsyncStorage.setItem('@theme', theme));
     }
 }
